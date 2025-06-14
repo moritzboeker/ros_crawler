@@ -1,5 +1,7 @@
 # ros_raspi_car: Turn a Remote Controlled Car into an Autonomous Robot via a Raspberry Pi 4 and ROS
-This repo contains the ROS packages developed or used to turn a remote controlled car into an autonomous robot! For more details visit the corresponding blog on my website [https://www.moritzboeker.de/](https://www.moritzboeker.de/2022/08/ros-raspi-car/)
+This repo contains ROS packages turning a remote controlled car into a self-driving robot! For more details visit the corresponding blog on my website [https://www.moritzboeker.de/](https://www.moritzboeker.de/2022/08/ros-raspi-car/)
+
+## ROS2 Jazzy migration still in progress
 
 ## Materials
 - remote controlled car
