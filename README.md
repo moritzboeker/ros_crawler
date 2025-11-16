@@ -1,8 +1,12 @@
 # ros_raspi_car: Turn a Remote Controlled Car into an Autonomous Robot via a Raspberry Pi 4 and ROS
 This repo contains ROS packages turning a remote controlled car into a self-driving robot! For more details visit the corresponding blog on my website [https://www.moritzboeker.de/](https://www.moritzboeker.de/2022/08/ros-raspi-car/)
 
-## ROS2 Jazzy migration still in progress
+# ROS2 Jazzy migration (WIP)
 
+1. Launch bringup via `ros2 launch bringup bringup.py`
+2. In case the lidar does not turn, you might need to connect the power USB plug into a power bank instead of the Raspberry Pi
+
+# ROS1 Legacy (Deprecated)
 ## Materials
 - remote controlled car
 - Raspberry Pi 4
