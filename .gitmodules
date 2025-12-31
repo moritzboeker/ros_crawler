@@ -1,6 +1,6 @@
 [submodule "ros_pwm_pca9685"]
 	path = ros_pwm_pca9685
-	url = https://github.com/BrettRD/ros-pwm-pca9685.git
+	url = https://github.com/moritzboeker/ros-pwm-pca9685.git
 [submodule "ydlidar_ros2_driver"]
 	path = ydlidar_ros2_driver
 	url = https://github.com/KarthikeshJG/ydlidar_ros2_driver.git
