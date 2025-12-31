@@ -1,5 +1,4 @@
-
-from ament_index_python.packages import get_package_share_directory
+import os
 
 from launch import LaunchDescription
 from launch_ros.actions import LifecycleNode
@@ -8,10 +7,6 @@ from launch_ros.substitutions import FindPackageShare
 from launch.actions import DeclareLaunchArgument
 from launch.actions import LogInfo
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
-
-import lifecycle_msgs.msg
-import os
-
 
 def generate_launch_description():
     driver_node = LifecycleNode(package='ydlidar_ros2_driver',
@@ -28,8 +23,18 @@ def generate_launch_description():
                     arguments=['0', '0', '0.02','0', '0', '0', '1','base_link','laser_frame'],
                     )
 
+    pwm_node = Node(package='pwm_pca9685', 
+                    executable='pca9685_node',
+                    name='pwm_node',
+                    remappings=[
+                        ('/command', '/command'),
+                    ],
+                    parameters=[PathJoinSubstitution([FindPackageShare('bringup'), 'config', 'pwm_pca9685_diff_drive.yaml'])],
+                    )
+
     return LaunchDescription([
         driver_node,
         tf2_node,
+        pwm_node,
     ])
 
