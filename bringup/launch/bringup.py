@@ -8,6 +8,8 @@ from launch.actions import DeclareLaunchArgument
 from launch.actions import LogInfo
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 
+pwm_pca9685_config = PathJoinSubstitution([FindPackageShare('bringup'), 'config', 'pwm_pca9685_ackermann_drive.yaml'])
+
 def generate_launch_description():
     driver_node = LifecycleNode(package='ydlidar_ros2_driver',
                                 executable='ydlidar_ros2_driver_node',
@@ -29,12 +31,23 @@ def generate_launch_description():
                     remappings=[
                         ('/command', '/command'),
                     ],
-                    parameters=[PathJoinSubstitution([FindPackageShare('bringup'), 'config', 'pwm_pca9685_diff_drive.yaml'])],
+                    parameters=[pwm_pca9685_config],
+                    )
+
+    ackermann_to_pwm_node = Node(package='pwm_pca9685', 
+                    executable='ackermann_to_pwm_node',
+                    name='ackermann_to_pwm_node',
+                    remappings=[
+                        ('/ackermann_cmd', '/ackermann_cmd'),
+                        ('/command', '/command'),
+                    ],
+                    parameters=[pwm_pca9685_config],
                     )
 
     return LaunchDescription([
         driver_node,
         tf2_node,
         pwm_node,
+        ackermann_to_pwm_node,
     ])
 

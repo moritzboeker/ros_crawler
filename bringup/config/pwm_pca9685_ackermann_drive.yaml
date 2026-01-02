@@ -1,0 +1,23 @@
+pwm_node:
+  ros__parameters:
+    device: "/dev/i2c-1"
+    frequency: 50
+    address: 0x40
+    pwm_min:        [   200,   200, 0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0]
+    pwm_max:        [   400,   400, 0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0]
+    timeout:        [   200,   200, 0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0]
+    timeout_value:  [     0,     0, 0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0]
+
+ackermann_to_pwm_node:
+    ros__parameters:
+      pwm_servo_channel_speed: 0      # [0,15] the PWM channel of the servo that drives forwards and backwards
+      pwm_servo_channel_steering: 1   # [0,15] the PWM channel of the servo that steers the robot
+      pwm_speed_center: 300           # the PWM value of the speed servo at which the robot stands still
+      pwm_speed_max: 400
+      pwm_speed_min: 200
+      pwm_steer_center: 300           # the PWM value of the steering servo at which the robot drives straight (zero steering angle)
+      pwm_steer_max: 400
+      pwm_steer_min: 200
+      max_speed: 1.0                  # [m/s] the maximum speed when a PWM value of pwm_speed_max is commanded
+      max_steering_angle: 1.0472      # [rad] the maximum steering angle when a PWM value of pwm_steer_max is commanded
+
