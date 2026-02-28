@@ -4,9 +4,10 @@
   <name>bringup</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
-  <maintainer email="moritz.boeker@gmx.de">crawler</maintainer>
+  <maintainer email="moritz.boeker@public-files.de">crawler</maintainer>
   <license>Apache-2.0</license>
 
+  <depend>sparkfun_otos_driver</depend>
   <depend>pwm_pca9685</depend>
   <depend>tf2_ros</depend>
   <depend>ydlidar_ros2_driver</depend>
