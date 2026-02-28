@@ -7,6 +7,10 @@
   <maintainer email="moritz.boeker@gmx.de">crawler</maintainer>
   <license>Apache-2.0</license>
 
+  <depend>pwm_pca9685</depend>
+  <depend>tf2_ros</depend>
+  <depend>ydlidar_ros2_driver</depend>
+
   <buildtool_depend>ament_cmake</buildtool_depend>
 
   <test_depend>ament_lint_auto</test_depend>
