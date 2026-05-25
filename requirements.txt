@@ -1,0 +1,3 @@
+sparkfun-qwiic-otos==2.0.0
+pyyaml==6.0.3
+setuptools==82.0.1

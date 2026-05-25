@@ -3,8 +3,13 @@ This repo contains ROS packages turning a remote controlled car into a self-driv
 
 # ROS2 Jazzy migration (WIP)
 
-1. Launch bringup via `ros2 launch bringup bringup.py`
-2. In case the lidar does not turn, you might need to connect the power USB plug into a power bank instead of the Raspberry Pi
+1. Setup the virtual environment: `./create_python_venv.sh`
+2. Build with colcon: `colcon build --packages-up-to bringup`
+3. Source the virtual environment and ROS install space: `source ./setup_python_venv.sh`
+4. Launch the bringup via `ros2 launch bringup bringup.py`
+
+Troubleshooting:
+1. In case the lidar does not turn, you might need to connect the power USB plug of the lidar into a separate USB port providing enough power other than the Raspberry Pi.
 
 # ROS1 Legacy (Deprecated)
 ## Materials
