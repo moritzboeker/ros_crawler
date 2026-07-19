@@ -1,0 +1,12 @@
+services:
+  crawler:
+    image: ghcr.io/moritzboeker/ros_raspi_car:jazzy
+    container_name: crawler
+    network_mode: host
+    ipc: host
+    restart: unless-stopped
+    environment:
+      ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-0}
+    devices:
+      - /dev/ydlidar:/dev/ydlidar
+      - /dev/i2c-1:/dev/i2c-1
