@@ -58,11 +58,19 @@ def generate_launch_description():
                 parameters=[sparkfun_otos_cfg],
                 )
 
+    foxglove_bridge_node = Node(
+                package='foxglove_bridge',
+                executable='foxglove_bridge',
+                name='foxglove_bridge',
+                parameters=[{'port': 8765}],
+                )
+
     return LaunchDescription([
         ydlidar_x2_node,
         ydliard_tf2_node,
         pwm_pca9685_node,
         ackermann_to_pwm_node,
         sparkfun_otos_node,
+        foxglove_bridge_node,
     ])
 
