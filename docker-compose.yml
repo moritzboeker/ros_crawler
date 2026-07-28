@@ -1,6 +1,6 @@
 services:
   crawler:
-    image: ghcr.io/moritzboeker/ros_raspi_car:jazzy
+    image: ghcr.io/moritzboeker/ros_crawler:jazzy
     container_name: crawler
     network_mode: host
     ipc: host
