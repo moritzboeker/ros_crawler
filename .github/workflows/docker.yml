@@ -2,7 +2,7 @@ name: docker
 
 on:
   push:
-    branches: [main]
+    branches: [ros2]
   workflow_dispatch:
 
 jobs:
@@ -43,7 +43,7 @@ jobs:
       - uses: docker/metadata-action@v5
         id: meta
         with:
-          images: ghcr.io/${{ github.repository_owner }}/ros_raspi_car
+          images: ghcr.io/${{ github.repository_owner }}/ros_crawler
           tags: |
             type=raw,value=jazzy,enable={{is_default_branch}}
             type=raw,value=jazzy-v${{ needs.release.outputs.version }},enable=${{ needs.release.outputs.published == 'true' }}
