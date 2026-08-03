@@ -1,6 +1,13 @@
-# ros_crawler
+# ROS Crawler
 Turn a remote controlled car into an autonomous robot via a raspberry pi 4 and ROS2 Jazzy.
 Further details: [https://www.moritzboeker.de/](https://www.moritzboeker.de/2022/08/ros-raspi-car/)
+
+## Parts
+- Remote-controlled car: I used the [DF-4J - XXL Crawler](https://www.df-models.info/RC-Cars/BasicLine-XXL), because it's rather slow but powerful
+- Raspberry Pi 4B or higher
+- Odometry: [SparkFun Optical Tracking Odometry Sensor - PAA5160E1 (Qwiic)](https://www.sparkfun.com/sparkfun-optical-tracking-odometry-sensor-paa5160e1-qwiic.html)
+- Laser Scanner: [YDLIDAR X2 360° 2D-LiDAR-Sensor](https://exp-tech.de/products/x2)
+- Servo Driver: [16-Channel 12-bit PWM/Servo Driver - I2C interface - PCA9685](https://www.adafruit.com/product/815)
 
 ## Run in Docker
 
