@@ -10,7 +10,7 @@
   <depend>sparkfun_otos_driver</depend>
   <depend>pwm_pca9685</depend>
   <depend>tf2_ros</depend>
-  <depend>ydlidar_ros2_driver</depend>
+  <depend>vanjee_lidar_sdk</depend>
   <exec_depend>foxglove_bridge</exec_depend>
 
   <buildtool_depend>ament_cmake</buildtool_depend>

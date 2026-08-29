@@ -1,32 +1,30 @@
 import os
 
 from launch import LaunchDescription
-from launch_ros.actions import LifecycleNode
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
-from launch.actions import DeclareLaunchArgument
-from launch.actions import LogInfo
-from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
+from launch.substitutions import PathJoinSubstitution
 
-ydlidar_x2_cfg = PathJoinSubstitution([FindPackageShare('bringup'), 'config', 'ydlidar_x2_cfg.yaml'])
+vanjee_wlr719c_cfg = PathJoinSubstitution([FindPackageShare('bringup'), 'config', 'vanjee_wlr719c_cfg.yaml'])
 pwm_pca9685_cfg = PathJoinSubstitution([FindPackageShare('bringup'), 'config', 'pwm_pca9685_cfg.yaml'])
 sparkfun_otos_cfg = PathJoinSubstitution([FindPackageShare('bringup'), 'config', 'sparkfun_otos_cfg.yaml'])
 
 def generate_launch_description():
-    ydlidar_x2_node = LifecycleNode(
-                package='ydlidar_ros2_driver',
-                executable='ydlidar_ros2_driver_node',
-                name='ydlidar_ros2_driver_node',
+    vanjee_lidar_ros2_node = Node(
+                package='vanjee_lidar_sdk',
+                executable='vanjee_lidar_sdk_node',
+                name='vanjee_lidar_sdk_node',
                 output='screen',
                 emulate_tty=True,
-                parameters=[ydlidar_x2_cfg],
+                parameters=[{'config_path': vanjee_wlr719c_cfg}],
                 namespace='/',
                 )
-    ydliard_tf2_node = Node(
+
+    vanjee_lidar_tf2_node = Node(
                 package='tf2_ros',
                 executable='static_transform_publisher',
                 name='static_tf_pub_laser',
-                arguments=['0', '0', '0.02','0', '0', '0', '1','base_link','laser_frame'],
+                arguments=['0.36', '0', '0.16','0', '0', '0', '1','base_link','vanjee_lidar'],
                 )
 
     pwm_pca9685_node = Node(
@@ -66,8 +64,8 @@ def generate_launch_description():
                 )
 
     return LaunchDescription([
-        ydlidar_x2_node,
-        ydliard_tf2_node,
+        vanjee_lidar_ros2_node,
+        vanjee_lidar_tf2_node,
         pwm_pca9685_node,
         ackermann_to_pwm_node,
         sparkfun_otos_node,
