@@ -1,0 +1,41 @@
+common:
+  msg_source: 1                                   # 0: not use lidar 
+                                                  # 1: The message is sourced from an online LiDAR.
+                                                  # 2: The message is sourced from pcap
+  send_point_cloud_ros: true                      # true: Send point clouds to ROS for visualization  
+lidar:
+  - driver:
+      lidar_type: vanjee_719c                       # LiDAR Model
+      connect_type: 1                               # Connection type: 1 - UDP, 2 - TCP
+      host_msop_port: 3002                          # Host port number for receiving point cloud data
+      lidar_msop_port: 6050                         # LiDAR port number
+      start_angle: 0                                # Starting angle of the point cloud
+      end_angle: 360                                # Ending angle of the point cloud
+      wait_for_difop: false                         # Wait for the angle calibration parameters to be imported
+      min_distance: 0.1                             # Minimum distance of the point cloud
+      max_distance: 40                              # Maximum distance of the point cloud
+      use_lidar_clock: false                        # True: Use LiDAR time as the message timestamp
+                                                    # False: Use host computer time as the message timestamp
+      pcap_path:                                    # Absolute path to the PCAP file
+      pcap_repeat: false                            # Whether to loop playback of the PCAP file
+      pcap_rate: 1                                  # Playback speed of the PCAP file
+      config_from_file: false                       # Whether to get parameters from the configuration file
+      angle_path_ver:                               # Path to the vertical angle configuration file
+      angle_path_hor:                               # Path to the horizontal angle configuration file
+      dense_points: false                           # Whether to exclude points marked as NAN from the output point cloud
+      ts_first_point: false                         # Whether the timestamp of the point cloud is the time of the first point
+                                                    # true = time of the first point, false = time of the last point
+      publish_mode: 0                               # Echo mode: 0 - publish first return, 1 - publish second return, 2 - publish both returns
+      group_address: 0.0.0.0                        # Multicast address
+      host_address: 192.168.0.64                    # Host IP address for receiving point cloud data
+      lidar_address: 192.168.0.2                    # LiDAR IP address
+      x: 0                                          # X-axis offset
+      y: 0                                          # Y-axis offset
+      z: 0                                          # Z-axis offset
+      roll: 0                                       # Roll angle offset
+      pitch: 0                                      # Pitch angle offset
+      yaw: 0                                        # Yaw angle offset
+      use_vlan: false                               # Whether packets in the PCAP file contain VLAN layers
+    ros:
+      ros_frame_id: vanjee_lidar                    # Frame id of packet message and point cloud message
+      ros_send_point_cloud_topic: /point_cloud      # Topic used to send point cloud through ROS

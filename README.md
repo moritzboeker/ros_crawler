@@ -6,22 +6,12 @@ Further details: [https://www.moritzboeker.de/](https://www.moritzboeker.de/2022
 - Remote-controlled car: I used the [DF-4J - XXL Crawler](https://www.df-models.info/RC-Cars/BasicLine-XXL), because it's rather slow but powerful
 - Raspberry Pi 4B or higher
 - Odometry: [SparkFun Optical Tracking Odometry Sensor - PAA5160E1 (Qwiic)](https://www.sparkfun.com/sparkfun-optical-tracking-odometry-sensor-paa5160e1-qwiic.html)
-- Laser Scanner: [YDLIDAR X2 360° 2D-LiDAR-Sensor](https://exp-tech.de/products/x2)
+- Laser Scanner: [Vanjee WLR-719 360° 4 layer LiDAR sensor](https://www.vanjee.net/vanjee_products/196223.html)
 - Servo Driver: [16-Channel 12-bit PWM/Servo Driver - I2C interface - PCA9685](https://www.adafruit.com/product/815)
 
 ## Run in Docker
 
-The image `ghcr.io/moritzboeker/ros_crawler:jazzy` (linux/arm64) contains the YDLidar SDK and `foxglove_bridge`. On start it runs `ros2 launch bringup bringup.py`.
-
-### One-time setup on the Raspberry Pi
-
-```bash
-# stable /dev/ydlidar symlink for the lidar's CP210x USB-UART bridge
-git clone --recursive --branch ros2 https://github.com/moritzboeker/ros_crawler.git ~/ros_crawler
-cd ~/ros_crawler
-sudo cp docker/99-crawler.rules /etc/udev/rules.d/
-sudo udevadm control --reload && sudo udevadm trigger
-```
+The image `ghcr.io/moritzboeker/ros_crawler:jazzy` (linux/arm64) contains `foxglove_bridge`. On start it runs `ros2 launch bringup bringup.py`.
 
 ### Run / update
 
@@ -43,7 +33,10 @@ docker login ghcr.io                  # PAT with write:packages
 docker buildx build --platform linux/arm64 -t ghcr.io/moritzboeker/ros_crawler:jazzy-test .
 ```
 
-### Troubleshooting:
-1. Ydlidar: In case the lidar does not turn, you might need to connect the power USB plug of the lidar into a separate USB port providing enough power other than the Raspberry Pi. Powerbanks usually provide enough current, the RaspberryPi itself doesn't.
+## Third-party code
 
+`ros2_vanjee_lidar_driver/` contains Vanjee's `vanjee_lidar_sdk` and `vanjee_lidar_msg` packages (v2.0.7, © 2023 Vanjee, BSD-3-Clause — see `ros2_vanjee_lidar_driver/vanjee_lidar_sdk/LICENSE`), downloaded from [vanjee.net](http://www.vanjee.net/download_files/1571790315333623808.html) and modified for this project:
 
+- switched the build from ROS1/catkin to ROS2/colcon (`package_ros2.xml` → `package.xml`, `COMPILE_METHOD COLCON`)
+- compile with C++17 on all ROS2 distros (required by rclcpp since Humble, vendor only enabled it for Humble)
+- added a `config_path` ROS2 parameter to `vanjee_lidar_sdk_node`, so the lidar config can live in `bringup/config/` instead of being hardcoded at compile time
