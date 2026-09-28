@@ -6,5 +6,7 @@ services:
     restart: unless-stopped
     environment:
       ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-0}
+      RMW_IMPLEMENTATION: rmw_cyclonedds_cpp
+      CYCLONEDDS_URI: '<CycloneDDS><Domain><Discovery><MaxAutoParticipantIndex>1000</MaxAutoParticipantIndex></Discovery><General><Interfaces><NetworkInterface name="lo" multicast="true"/><NetworkInterface name="wlan0" multicast="true"/></Interfaces></General></Domain></CycloneDDS>'
     devices:
       - /dev/i2c-1:/dev/i2c-1

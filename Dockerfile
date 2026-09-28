@@ -15,7 +15,8 @@ COPY . src/ros_crawler
 RUN apt-get update \
     && rosdep update --rosdistro "${ROS_DISTRO}" \
     && rosdep install --from-paths src --ignore-src -y --rosdistro "${ROS_DISTRO}" \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get install ros-jazzy-cyclonedds
 
 RUN . "/opt/ros/${ROS_DISTRO}/setup.sh" \
     && colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release
