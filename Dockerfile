@@ -4,6 +4,7 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         build-essential \
         python3-pip \
+        ros-${ROS_DISTRO}-rmw-cyclonedds-cpp \
     && rm -rf /var/lib/apt/lists/*
 
 # Sensor library for the SparkFun OTOS, not resolvable via rosdep
@@ -15,8 +16,7 @@ COPY . src/ros_crawler
 RUN apt-get update \
     && rosdep update --rosdistro "${ROS_DISTRO}" \
     && rosdep install --from-paths src --ignore-src -y --rosdistro "${ROS_DISTRO}" \
-    && rm -rf /var/lib/apt/lists/* \
-    && apt-get install ros-jazzy-cyclonedds
+    && rm -rf /var/lib/apt/lists/*
 
 RUN . "/opt/ros/${ROS_DISTRO}/setup.sh" \
     && colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release
