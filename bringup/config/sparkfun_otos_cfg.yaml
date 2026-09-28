@@ -20,9 +20,9 @@ otos:
     # The sensor compensates the offset in firmware, so the published
     # odometry refers to the robot center regardless of mounting position.
     offset:
-      x: 0.0
-      y: 0.0
-      yaw: 0.0
+      x: 0.170
+      y: 0.20
+      yaw: 3.1415
 
     # Diagonal covariance values [x, y, yaw]. The OTOS' own std-dev registers
     # are not used because SparkFun states they do not represent actual error.
