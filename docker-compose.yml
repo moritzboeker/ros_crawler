@@ -10,3 +10,6 @@ services:
       CYCLONEDDS_URI: '<CycloneDDS><Domain><Discovery><MaxAutoParticipantIndex>1000</MaxAutoParticipantIndex></Discovery><General><Interfaces><NetworkInterface name="lo" multicast="true"/><NetworkInterface name="wlan0" multicast="true"/></Interfaces></General></Domain></CycloneDDS>'
     devices:
       - /dev/i2c-1:/dev/i2c-1
+    volumes:
+      # Tune parameters without rebuilding the image by modifying the bringup configs
+      - ./bringup/config/:/ws/install/bringup/share/bringup/config/:ro
