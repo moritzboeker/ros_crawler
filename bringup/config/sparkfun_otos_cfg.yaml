@@ -17,12 +17,15 @@ otos:
     angular_scalar: 1.0
 
     # Pose of the sensor relative to the robot center (meters, radians).
+    # The robot center lies in the middle of the Ackermann vehicle's rear axis.
     # The sensor compensates the offset in firmware, so the published
     # odometry refers to the robot center regardless of mounting position.
+    # The board's printed x arrow points in driving direction and its y arrow
+    # to the left, i.e. it is aligned with base_link, hence yaw = 0.
     offset:
-      x: 0.170
-      y: 0.20
-      yaw: 3.1415
+      x: 0.163
+      y: 0.020
+      yaw: 0.0
 
     # Diagonal covariance values [x, y, yaw]. The OTOS' own std-dev registers
     # are not used because SparkFun states they do not represent actual error.
