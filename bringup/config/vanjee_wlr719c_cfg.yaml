@@ -13,7 +13,8 @@ lidar:
       end_angle: 360                                # Ending angle of the point cloud
       wait_for_difop: false                         # Wait for the angle calibration parameters to be imported
       min_distance: 0.1                             # Minimum distance of the point cloud
-      max_distance: 40                              # Maximum distance of the point cloud
+      max_distance: 10.0                            # Maximum distance of the point cloud
+      hide_points_range: 0-1,90-270,0-0.6           # Masking format:  line id range: C1-C2，angle range: A1-A2，distance range: L1-L2;
       use_lidar_clock: false                        # True: Use LiDAR time as the message timestamp
                                                     # False: Use host computer time as the message timestamp
       pcap_path:                                    # Absolute path to the PCAP file
