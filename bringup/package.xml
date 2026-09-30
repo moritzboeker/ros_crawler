@@ -3,15 +3,16 @@
 <package format="3">
   <name>bringup</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="moritz.boeker@public-files.de">crawler</maintainer>
+  <description>Launching all relevant nodes for ROS Crawler</description>
+  <maintainer email="moritz.boeker@public-files.de">Moritz Boeker</maintainer>
   <license>Apache-2.0</license>
 
-  <depend>sparkfun_otos_driver</depend>
-  <depend>pwm_pca9685</depend>
-  <depend>tf2_ros</depend>
-  <depend>vanjee_lidar_sdk</depend>
   <exec_depend>foxglove_bridge</exec_depend>
+  <exec_depend>pointcloud_to_laserscan</exec_depend>
+  <exec_depend>pwm_pca9685</exec_depend>
+  <exec_depend>sparkfun_otos_driver</exec_depend>
+  <exec_depend>tf2_ros</exec_depend>
+  <exec_depend>vanjee_lidar_sdk</exec_depend>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 

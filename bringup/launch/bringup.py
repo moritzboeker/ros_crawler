@@ -27,6 +27,26 @@ def generate_launch_description():
                 arguments=['0.36', '0', '0.16','0', '0', '0', '1','base_link','vanjee_lidar'],
                 )
 
+    vanjee_pointcloud_to_laserscan = Node(
+                package='pointcloud_to_laserscan',
+                executable='pointcloud_to_laserscan_node',
+                name='vanjee_pointcloud_to_laserscan',
+                remappings=[
+                    ('cloud_in', '/point_cloud'),
+                    ('scan', '/scan'),
+                ],
+                parameters=[{
+                    'min_height': -0.1, # 0.1 m below vanjee_lidar frame
+                    'max_height': 0.1,  # 0.1 m above vanjee_lidar frame
+                    'angle_increment': 0.003490659,
+                    'queue_size': 1,
+                    'scan_time': 1.0/10.0,
+                    'range_min': 0.1,
+                    'range_max': 10.0,
+                }],
+                output='screen',
+            )
+
     pwm_pca9685_node = Node(
                 package='pwm_pca9685', 
                 executable='pca9685_node',
@@ -66,6 +86,7 @@ def generate_launch_description():
     return LaunchDescription([
         vanjee_lidar_ros2_node,
         vanjee_lidar_tf2_node,
+        vanjee_pointcloud_to_laserscan,
         pwm_pca9685_node,
         ackermann_to_pwm_node,
         sparkfun_otos_node,
