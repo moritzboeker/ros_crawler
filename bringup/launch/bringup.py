@@ -76,6 +76,13 @@ def generate_launch_description():
                 parameters=[sparkfun_otos_cfg],
                 )
 
+    ackermann_feedback_node = Node(
+                package='ackermann_feedback',
+                executable='ackermann_feedback_node',
+                name='ackermann_feedback',
+                output='screen',
+                )
+
     foxglove_bridge_node = Node(
                 package='foxglove_bridge',
                 executable='foxglove_bridge',
@@ -90,6 +97,7 @@ def generate_launch_description():
         pwm_pca9685_node,
         ackermann_to_pwm_node,
         sparkfun_otos_node,
+        ackermann_feedback_node,
         foxglove_bridge_node,
     ])
 
